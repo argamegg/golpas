@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Golpas Cafe</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Bootstrap Icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
+        <!-- SimpleLightbox plugin CSS-->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>  
+    <body id="page-top">
+        <div id="loading-screen">
+            <img id="loading-logo" src="/assets/golpaslogo.png" alt="Гол+Пас Logo">
+        </div>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="/index.html"><img class="logo" src="assets/golpaslogo.png" alt="logo"></a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto my-2 my-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="/glavnoe/index.html">Новости</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/menu/index.html">Меню</a>
+                        <li class="nav-item"><a class="nav-link" href="/contacts/index.html">Контакты</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/vacancy/index.html">Вакансии</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/about us/index.html">О нас</a></li>
+                    </ul>
+                    <button id="authButton" class="button1">
+                        <svg class="auth-icon" viewBox="0 0 24 20">
+                            <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                        </svg>
+                        <span id="authButtonText">Login</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle">Sign In</h2>
+            <div id="authContent">
+                <div class="tabs">
+                    <div class="tab active" data-tab="signin">Sign In</div>
+                    <div class="tab" data-tab="signup">Sign Up</div>
+                </div>
+                <div id="signinContent">
+                    <form id="signinForm">
+                        <div class="form-group">
+                            <label for="emailOrPhone">Email or Phone</label>
+                            <input type="text" id="emailOrPhone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" required>
+                        </div>
+                        <button type="submit">Sign In</button>
+                    </form>
+                </div>
+                <div id="signupContent" style="display: none;">
+                    <form id="signupForm">
+                        <div class="form-group">
+                            <label for="signupEmail">Email</label>
+                            <input type="email" id="signupEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signupPhone">Phone Number</label>
+                            <input type="tel" id="signupPhone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signupPassword">Password</label>
+                            <input type="password" id="signupPassword" required>
+                        </div>
+                        <button type="submit">Sign Up</button>
+                    </form>
+                </div>
+            </div>
+            <div id="profileContent">
+                <select id="accountSelect"></select>
+                <p><strong>Email:</strong> <span id="profileEmail"></span></p>
+                <p><strong>Phone:</strong> <span id="profilePhone"></span></p>
+                <div class="profile-actions">
+                    <button id="newAccountButton">New Account</button>
+                    <button id="logoutButton">Logout</button>
+                </div>
+            </div>
+            <div id="errorMessages" class="error"></div>
+        </div>
+    </div>
+
+    
+        <!-- Masthead-->
+        <header class="masthead">
+            <div class="container px-4 px-lg-5 h-100">
+                <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+                    <div class="col-lg-8 align-self-end">
+                        <h1 class="text-white font-weight-bold">Добро пожаловать в Голпас!</h1>
+                        <hr class="divider" />
+                    </div>
+                    <div class="col-lg-8 align-self-baseline">
+                        <p class="text-white mb-5">Окунитесь в атмосферу вкусной еды, живой музыки и неповторимого уюта</p>
+                        <a class="btn btn-primary btn-xl" href="#about">Узнать больше</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- About-->
+        <section class="page-section bg-primary" id="about" style="background-color: #EBEBEB">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-lg-8 text-center">
+                        <h2 class="text-white1 mt-0">Мы знаем, что вам нужно!</h2>
+                        <hr class="divider divider-light" />
+                        <p class="text-white-75 mb-4">Наши заведения известны в городе своей популярностью и обширным выбором стейков из отборного мяса — более 10 различных видов! Мы настоящие энтузиасты мяса и разбираемся в нем досконально. Многие из наших мясных блюд готовятся по оригинальным авторским рецептам.</p>
+                        <a class="btn btn-light btn-xl" href="/about us/index.html">Ознакомиться с нами</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Portfolio-->
+        <div id="portfolio">
+            <div class="container-fluid p-0">
+                <div class="row g-0">
+                    <div class="col-lg-4 col-sm-6">
+                        <a class="portfolio-box" href="assets/Сет ББК.jpg" title="Сет BBQ">
+                            <img class="img-fluid" src="assets/Сет ББК.jpg" alt="..." />
+                            <div class="portfolio-box-caption">
+                                <div class="project-category text-white-50">Сеты стейков</div>
+                                <div class="project-name">Сет BBQ</div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <a class="portfolio-box" href="assets/Мурагер.jpg" title="Мурагер">
+                            <img class="img-fluid" src="assets/Мурагер.jpg" alt="..." />
+                            <div class="portfolio-box-caption">
+                                <div class="project-category text-white-50">Филиалы</div>
+                                <div class="project-name">Мурагер</div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <a class="portfolio-box" href="assets/пиво с бургером.jpg" title="Шеф Бургер">
+                            <img class="img-fluid" src="assets/пиво с бургером.jpg" alt="..." />
+                            <div class="portfolio-box-caption">
+                                <div class="project-category text-white-50">Гамбургеры</div>
+                                <div class="project-name">Шеф Бургер</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Call to action-->
+        <section class="page-section" style="background-color: #EBEBEB">
+            <div class="container px-4 px-lg-5 text-center">
+                <h2 class="mb-4">Ознакомтесь с нашим меню</h2>
+                <a class="btn btn-light btn-xl" href="/menu/index.html">Ознакомиться</a>
+            </div>
+        </section>
+        
+        <!-- Football Leagues Section -->
+        <section class="page-section" id="football-matches">
+            <div class="container px-4 px-lg-5">
+                <h2 class="text-center mt-0">Ближайшие матчи</h2>
+                <hr class="divider" />
+                <div id="matches-container" class="row gx-4 gx-lg-5 ">
+                    <!-- Matches will be dynamically inserted here -->
+                </div>
+            </div>
+        </section>        
+        <!-- Footer-->
+        <footer class="bg-light py-5">
+            <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2023 - Golpas Cafe. Made by Erasyl Serikbek, Arman Bezhanov, Adilzhan Medetbekuly</div></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- SimpleLightbox plugin JS-->
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <!-- Football Leagues API Integration -->
+        <script>const leagueIds = [39, 140, 78]; // EPL (39) and La Liga (140) IDs
+            const leagueNames = { 39: 'Английская Премьер Лига', 140: 'Ла Лига', 78: 'Бундеслига' }; // Mapping league IDs to names
+            const currentDate = new Date();
+            const oneWeekLater = new Date();
+            oneWeekLater.setDate(currentDate.getDate() + 7); // Calculate one week from today
+            
+            let allMatches = []; // Store all matches for later use
+            let initialMatches = []; // Store the first 5 matches for the initial display
+            
+            const matchesContainer = $('#matches-container');
+            
+            function fetchMatchesForLeague(leagueId) {
+                const settings = {
+                    async: true,
+                    crossDomain: true,
+                    url: `https://api-football-v1.p.rapidapi.com/v3/fixtures?league=${leagueId}&season=2024&status=NS`, // Fetch matches for a single league
+                    method: 'GET',
+                    headers: {
+                        'x-rapidapi-key': '208cef30e5mshe0b0c9cd411e522p15320ejsn9563f6e6baf5',
+                        'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
+                    }
+                };
+            
+                return $.ajax(settings);
+            }
+            
+            function getUpcomingMatches() {
+                let allRequests = [];
+            
+                // Loop through each leagueId and get the matches
+                leagueIds.forEach(leagueId => {
+                    allRequests.push(fetchMatchesForLeague(leagueId));
+                });
+            
+                // After all requests are completed, combine the results
+                $.when.apply($, allRequests).done(function(...responses) {
+                    // Debugging: log the entire response for each league
+                    console.log("API Responses: ", responses);
+                    
+                    const matches = responses.map((response, index) => {
+                        const leagueId = leagueIds[index];
+                        return response[0]?.response?.map(match => ({
+                            ...match,
+                            leagueName: leagueNames[leagueId] // Add the league name for each match
+                        })) || [];
+                    }).flat();
+                    
+                    // Debugging: log matches before filtering
+                    console.log("All Matches: ", matches);
+            
+                    // Flatten the array of matches, filter by the upcoming week, and sort by date/time
+                    const upcomingWeekMatches = matches.filter(match => {
+                        const matchDate = new Date(match.fixture?.date);
+                        return matchDate >= currentDate && matchDate <= oneWeekLater;
+                    }).sort((a, b) => {
+                        const dateA = new Date(a.fixture?.date);
+                        const dateB = new Date(b.fixture?.date);
+                        return dateA - dateB; // Sort by ascending date (earliest first)
+                    });
+            
+                    // Debugging: log matches after filtering and sorting
+                    console.log("Upcoming Matches for the Next Week (Sorted): ", upcomingWeekMatches);
+            
+                    allMatches = upcomingWeekMatches;
+                    initialMatches = upcomingWeekMatches.slice(0, 5); // Store the first 5 matches for the initial display
+                    displayMatchesWithButton(initialMatches); // Display the first 5 matches
+                }).fail(function (error) {
+                    console.error('Error fetching matches:', error);
+                    matchesContainer.html('<p>Failed to load upcoming matches. Please try again later.</p>');
+                });
+            }
+            
+            function displayMatchesWithButton(matches) {
+                matchesContainer.empty(); // Clear previous content
+            
+                if (!matches || matches.length === 0) {
+                    matchesContainer.html('<p>No upcoming matches found for this week in these leagues.</p>');
+                    return;
+                }
+            
+                // Display the matches
+                displayMatches(matches);
+            
+                // If there are more than 5 matches, add the "Show All Matches" button
+                if (allMatches.length > 5 && matches.length === 5) {
+                    const showAllButton = $('<button id="show-all-btn" class="btn btn-light btn-xl">Показать все матчи</button>');
+                    matchesContainer.append(showAllButton);
+            
+                    // Add event listener for "Show All Matches" button
+                    showAllButton.on('click', function () {
+                        displayMatches(allMatches.slice(5)); // Show all matches excluding the first 5
+                        showAllButton.remove(); // Remove the "Show All Matches" button
+                        displayResetButton(); // Display the reset button
+                    });
+                }
+            }
+            
+            function displayResetButton() {
+                const resetButton = $('<button id="reset-btn" class="btn btn-light btn-xl">Показать первые 5 матчей</button>');
+                matchesContainer.append(resetButton);
+            
+                // Add event listener for "Show First 5 Matches" button
+                resetButton.on('click', function () {
+                    displayMatches(initialMatches); // Reset to the first 5 matches
+                    resetButton.remove(); // Remove the reset button
+                    displayMatchesWithButton(initialMatches); // Re-add the "Show All Matches" button
+                });
+            }
+            
+            // Function to display matches
+            function displayMatches(matches) {
+                matches.forEach(match => {
+                    const homeTeam = match.teams?.home?.name;
+                    const awayTeam = match.teams?.away?.name;
+                    const date = new Date(match.fixture?.date).toLocaleDateString();
+                    const time = new Date(match.fixture?.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                    const venue = match.fixture?.venue?.name || 'Неизвестно';
+                    const leagueName = match.leagueName || 'Неизвестно';
+            
+                    // Create a match card
+                    const matchCard = $(`
+                        <div class="match-card">    
+                            <h3>${homeTeam} vs ${awayTeam}</h3>
+                            <p>Лига: ${leagueName}</p>
+                            <p>Дата: ${date}</p>
+                            <p>Время: ${time}</p>
+                            <p>Стадион: ${venue}</p>
+                        </div>
+                    `);
+            
+                    matchesContainer.append(matchCard);
+                });
+            }
+            // Call the function to fetch matches when the page is ready
+            $(document).ready(function() {
+                getUpcomingMatches();
+            });
+            
+
+        </script>
+    </body>
+</html>
