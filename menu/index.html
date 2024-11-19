@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Меню ресторана</title>
-    <link rel="stylesheet" href="../menu/stylesM.css" />
+    <link rel="stylesheet" href="/menu/stylesM.css" />
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Playwrite+CU:wght@100..400&display=swap");
     </style>
@@ -17,19 +17,79 @@
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
       <div class="container px-4 px-lg-5">
-          <a class="navbar-brand" href="../index.html"><img class="logo" src="../assets/golpaslogo.png" alt="logo"></a>
+          <a class="navbar-brand" href="/index.html"><img class="logo" src="/assets/golpaslogo.png" alt="logo"></a>
           <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
           <div class="collapse navbar-collapse" id="navbarResponsive">
               <ul class="navbar-nav ms-auto my-2 my-lg-0">
-                  <li class="nav-item"><a class="nav-link" href="../glavnoe/index.html">Новости</a></li>
-                  <li class="nav-item"><a class="nav-link" href="../menu/index.html">Меню</a>
-                  <li class="nav-item"><a class="nav-link" href="../contacts/index.html">Контакты</a></li>
-                  <li class="nav-item"><a class="nav-link" href="../vacancy/index.html">Вакансии</a></li>
-                  <li class="nav-item"><a class="nav-link" href="../about us/index.html">О нас</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/glavnoe/index.html">Новости</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/menu/index.html">Меню</a>
+                  <li class="nav-item"><a class="nav-link" href="/contacts/index.html">Контакты</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/vacancy/index.html">Вакансии</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/about us/index.html">О нас</a></li>
+                  <li class="nav-item"></a><button id="toggleTheme" class="btn theme-toggle-btn btn1">🌙</button></a></li>
               </ul>
+              <button id="authButton" class="auth-button">
+                            <svg class="auth-icon" viewBox="0 0 24 24">
+                                <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                            </svg>
+                            <span id="authButtonText">Login</span>
+                </button>
           </div>
       </div>
   </nav>
+
+  <div id="authModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 id="modalTitle">Sign In</h2>
+        <div id="authContent">
+            <div class="tabs">
+                <div class="tab active" data-tab="signin">Sign In</div>
+                <div class="tab" data-tab="signup">Sign Up</div>
+            </div>
+            <div id="signinContent">
+                <form id="signinForm">
+                    <div class="form-group">
+                        <label for="emailOrPhone">Email or Phone</label>
+                        <input type="text" id="emailOrPhone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" required>
+                    </div>
+                    <button type="submit">Sign In</button>
+                </form>
+            </div>
+            <div id="signupContent" style="display: none;">
+                <form id="signupForm">
+                    <div class="form-group">
+                        <label for="signupEmail">Email</label>
+                        <input type="email" id="signupEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupPhone">Phone Number</label>
+                        <input type="tel" id="signupPhone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupPassword">Password</label>
+                        <input type="password" id="signupPassword" required>
+                    </div>
+                    <button type="submit">Sign Up</button>
+                </form>
+            </div>
+        </div>
+        <div id="profileContent">
+            <select id="accountSelect"></select>
+            <p><strong>Email:</strong> <span id="profileEmail"></span></p>
+            <p><strong>Phone:</strong> <span id="profilePhone"></span></p>
+            <div class="profile-actions">
+                <button id="newAccountButton">New Account</button>
+                <button id="logoutButton">Logout</button>
+            </div>
+        </div>
+        <div id="errorMessages" class="error"></div>
+    </div>
+</div>
     <!-- Buttons Section -->
     <section class="menu-buttons">
       <a href="/menu/index.html" class="restaurant-menu">Restaurant Menu</a>
@@ -42,10 +102,10 @@
         <!-- Filter form -->
         <div class = "filter">
           <label for="min-price">Min Price:</label>
-          <input type="number" id="min-price" value="0">
+          <input class="input1" type="number" id="min-price" value="0">
           
           <label for="max-price">Max Price:</label>
-          <input type="number" id="max-price" value="20000">
+          <input class="input1" type="number" id="max-price" value="20000">
           
           <label for="category">Category:</label>
           <select id="category">
